@@ -5,7 +5,7 @@ double funk1(double zahl, double potentz)
 {
     int i = 1;
     double mul = 1;
-    while (i <= potentz)
+    while (i <= potentz) 
     {
         mul = mul * zahl;
         i++;
@@ -42,7 +42,7 @@ int main()
         }
         printf("Geben Sie die Potentz Zahl ein: ");
         scanf("%d", &Potentz);
-    } while (Potentz < 0);
+    } while (Potentz < 0);   // madami k shart dakhele parantez bargharar bashad bepar bala
 
     double result1 = funk1(Zahl, Potentz);
     double result2 = funk2(Zahl, Potentz);
