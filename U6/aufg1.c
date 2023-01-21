@@ -1,60 +1,71 @@
 #include <stdio.h>
 
-int foundezAM(char string[], char letter)
+int funkFoundLetter(char string[], char letter)
 {
-    int i, result = 0;
 
-    for (i = 0; string[i] != '\0'; i++)
+    int j;
+    int counter = 0;
+    for (j = 0; string[j] != '\0'; j++)
     {
-        if (string[i] == letter)
-            result++;
+
+        if (string[j] == letter)
+        {
+            counter++;
+        }
     }
-    return result;
+    return counter;
 }
-
-int foundType(char letter)
+//----------------------------------------------------------------------------------------------------------------------------
+int funkFoundType(char letter)
 {
-    if ((letter >= 65 && letter <= 90) || (letter >= 97 && letter <= 122))
-    {
-        return 1;
-    }
-    else if ((letter >= 48 && letter <= 57))
+
+    if (letter > 47 && letter < 58)
     {
         return 0;
+    }
+    else if (letter > 64 && letter < 91 || letter > 96 && letter < 123)
+    {
+        return 1;
     }
     else
     {
         return 2;
     }
 }
-
-int asciiFunk(int letter)
+//-----------------------------------------------------------------------------------------------------------------------------
+int funkAsciiCode(int(dezNum))
 {
-    return letter;
+    return dezNum;
 }
-
-int changedAscii(int letter)
+//-----------------------------------------------------------------------------------------------------------------------------
+int toChange(int letter)
 {
+
     return letter + 32;
 }
+//-----------------------------------------------------start main Programm-------------------------------------------------
+
 int main()
 {
 
-    char str[] = "2EinAAA Herr; faelltzzzzzzzzz vom  Stuhl (Erich Kaestner) Es ist bekannt, dass Menschen, die im Sitzen einschlafen, vornueber sinken.";
-
+    char str[] = "Ein Herr faellt vom Stuhl (Erich Kaestner) Es ist bekannt, dass Menschen, die im Sitzen einschlafen, vornueber sinken. Immer tiefer und tiefer. Wenn die Koerpernerven, die trotz des Schlafens munter bleiben, spueren, dass sich das Schwergewicht allzu sehr vom Stuhl entfernt, geben sie dem Kopf einen Ruck. Er fliegt nach rueckwaerts, und das sogenannte Einnicken kann wieder von vorne beginnen. Wenn die Nerven aber den richtigen Augenblick versaeumen, purzelt der Schlaefer vom Stuhl. Alfredo Torres, einem braven Buerger von Buenos Aires, erging es so. Er schlief ein und fiel vom Stuhl. Waere ihm das zu Hause passiert, haette es niemand weiter erfahren, und die Oeffentlichkeit wuesste heute noch kein Wort ueber den Fall. Nun passierte die Sache aber leider Herrn Torres nicht zu Hause, sondern im Theater. Die Stuhlreihen waren schmal. Und nun interessiert sich eine ganze Stadt fuer die Angelegenheit. Herr Torres hat naemlich die Rechnung, die der Arzt sandte, keineswegs bezahlt, sondern dem Dramatiker geschickt, der an dem Malheur die Schuld traegt. Denn - argumentiert der Rechtsanwalt des Verletzten - waere das Theaterstueck amuesanter gewesen, waere Herr Torres nicht eingeschlafen. Waere er nicht eingeschlafen, waere er nicht vom Stuehlchen gefallen. Waere er nicht vom Stuehlchen gefallen, haette er sich nicht wehgetan. Also: er verletzte sich, weil das Stueck schlecht war. Der Fall liegt eigentlich klar. Aber nur fuer Herrn Torres und seinen Rechtsanwalt. Der Stueckeschreiber und dessen Rechtsanwalt sind natuerlich ganz anderer Ansicht. Da waehrend der Auffuehrung - wenn sie auch schlecht war - von zweitausend Besuchern nur ein einziger vom Stuhl fiel, scheint dieser Fall doch wohl mehr auf Kosten dieses Besuchers, als auf die des Stueckes gesetzt werden zu duerfen. Immerhin ist der Prozess noch im Gange. Wir wollen hoffen, dass Herr Torres mit seiner Klage abgewiesen wird. Denn wo kaemen wir hin, wenn es den Autoren so erschwert wuerde, langweilige Dramen auffuehren zu lassen?";
     int i;
-    int zeichen, e, z, A, M = 0;
-    int buchstabe, buchstabeFunc = 0;
-    int leerzeichen, leerzeichenFunc = 0;
-    int ziffer, zifferFunc;
-    int querSumme;
-    char strKlein[] = "";
-    char strKleinFunk[] = "";
+    int zeichnen = 0;
+    int e = 0, z = 0, A = 0, M = 0;
+    int buchstabe = 0;
+    int leerzeichen = 0;
+    int zifferFunk = 0, buchstabeFunk = 0, sonstigeFunk = 0;
+    int querSumme = 0;
+    int num = 2; // you can change the number if you want, It's just an example :)
+    char strKlein[2500] = "";
+    int buffer;
+    char funkStrKlein[2500] = "";
 
+    //------------------------------------Wie viel Zeichnen,Buchstaben,Leerzeichen,Ziffer,Sonstige?--------------------------------------------------
     for (i = 0; str[i] != '\0'; i++)
     {
-        zeichen++;
-        if ((str[i] >= 65 && str[i] <= 90) || (str[i] >= 97 && str[i] <= 122))
+        zeichnen++;
+        if (str[i] > 64 && str[i] < 91 || str[i] > 96 && str[i] < 123)
         {
             buchstabe++;
         }
@@ -62,82 +73,95 @@ int main()
         {
             leerzeichen++;
         }
-        if ((str[i] >= 48 && str[i] <= 57))
+
+        //--------------------------------Wie viel Buchstaben,Ziffer,Sonstige mit Funktion?----------------------------------------------------------
+
+        int result5 = funkFoundType(str[i]);
+        if (result5 == 0)
         {
-            ziffer++;
+            zifferFunk++;
         }
-        int letterType = foundType(str[i]);
-        if (letterType == 0)
+        else if (result5 == 1)
         {
-            zifferFunc++;
-        }
-        else if (letterType == 1)
-        {
-            buchstabeFunc++;
+            buchstabeFunk++;
         }
         else
         {
-            leerzeichenFunc++;
+            sonstigeFunk++;
         }
-        switch (str[i])
-        {
-        case 'e':
-            e++;
-            break;
-        case 'z':
-            z++;
-            break;
-        case 'A':
-            A++;
-            break;
-        case 'M':
-            M++;
-            break;
-        }
-        int buffer = str[i];
-        querSumme += buffer;
-        // E-------------------------------------------------------------------------------------------
+        //-----------------------------------------------querSumme---------------------------------------------------------------
+
+        querSumme += str[i];
+        //---------------------------------------------------------------------------------------------------------------------
         strKlein[i] = str[i];
-        if ((strKlein[i] >= 65 && strKlein[i] <= 90))
+        if (strKlein[i] > 64 && strKlein[i] < 91)
         {
             buffer = strKlein[i] + 32;
             strKlein[i] = buffer;
         }
-        // Efunk-----------------------------------------------------------------------------------------------
-        if ((str[i] >= 65 && str[i] <= 90))
+        //---------------------------------------------------------------------------------------------------------------------
+        funkStrKlein[i] = str[i];
+        if (funkStrKlein[i] > 64 && funkStrKlein[i] < 91)
         {
-            int temp = changedAscii(str[i]);
-            printf("%d ist der in nötigenfalls veränderte ASCII code fur zeichen %c!\n", temp, str[i]);
+            buffer = toChange(funkStrKlein[i]);
+            funkStrKlein[i] = buffer;
+        }
+        //----------------------------------------------------ezAM-----------------------------------------------------------------------
+
+        switch (str[i])
+        {
+        case ('e'):
+            e++;
+            break;
+        case ('z'):
+            z++;
+            break;
+        case ('A'):
+            A++;
+            break;
+        case ('M'):
+            M++;
+            break;
         }
     }
+    //-------------------------------------------------call funktions----------------------------------------------------------------------
+    printf("string: %s\n", str);
 
-    int eFunk = foundezAM(str, 'e');
-    int zFunk = foundezAM(str, 'z');
-    int AFunk = foundezAM(str, 'A');
-    int MFunk = foundezAM(str, 'M');
-    int num = 34;
-    int asciiCodeFunk = asciiFunk(str[num]);
+    int result1 = funkFoundLetter(str, 'e');
+    int result2 = funkFoundLetter(str, 'z');
+    int result3 = funkFoundLetter(str, 'A');
+    int result4 = funkFoundLetter(str, 'M');
+    int result6 = funkAsciiCode(str[num]);
 
-    printf("%d 'Zeichen' enthält der Text.\n", zeichen);
-    printf("%d 'e' enthält der Text.\n", e);
-    printf("%d 'z' enthält der Text.\n", z);
-    printf("%d 'A' enthält der Text.\n", A);
-    printf("%d 'M' enthält der Text.\n", M);
-    printf("%d 'e' Funk enthält der Text.\n", eFunk);
-    printf("%d 'z' Funk enthält der Text.\n", zFunk);
-    printf("%d 'A' Funk enthält der Text.\n", AFunk);
-    printf("%d 'M' Funk enthält der Text.\n", MFunk);
-    printf("%d Leerzeichen enthält der Text.\n", leerzeichen);
-    printf("%d Buchstaben enthält der Text.\n", buchstabe);
-    printf("%d Ziffer enthält der Text.\n", ziffer);
-    printf("%d ZifferFunc enthält der Text.\n", zifferFunc);
-    printf("%d buchstabeFunc enthält der Text.\n", buchstabeFunc);
-    printf("%d sonstigeFunc enthält der Text.\n", leerzeichenFunc);
-    printf("%d ist die Summe der ASCII-Codes aller Zeichen im Text!\n", querSumme);
-    printf("%d ist der ASCII-Code von str[%d]!\n", asciiCodeFunk, num);
-    printf("converted to klein: \n %s \n", strKlein);
-
-    // printf("%d is the type of letter \n", letterType);
-
+    //--------------------------------------------------ausdrücken--------------------------------------------------------------
+    printf("\n");
+    printf("-----------------------------------------------------------------------------\n");
+    printf("%d zeichnen enthält in der Text.\n", i);
+    printf("-----------------------------------------------------------------------------\n");
+    printf("%d 'e' enthält in der Text.\n", e);
+    printf("%d 'z' enthält in der Text.\n", z);
+    printf("%d 'A' enthält in der Text.\n", A);
+    printf("%d 'M' enthält in der Text.\n", M);
+    printf("-----------------------------------------------------------------------------\n");
+    printf("%d 'e' enthält in der Text (mit Hilfe der Funktion).\n", result1);
+    printf("%d 'z' enthält in der Text (mit Hilfe der Funktion).\n", result2);
+    printf("%d 'A' enthält in der Text (mit Hilfe der Funktion).\n", result3);
+    printf("%d 'M' enthält in der Text (mit Hilfe der Funktion).\n", result4);
+    printf("-----------------------------------------------------------------------------\n");
+    printf("%d Buchstabe enthält in der Text\n", buchstabe);
+    printf("%d Leerzeichen enthält in der Text\n", leerzeichen);
+    printf("-----------------------------------------------------------------------------\n");
+    printf("%d Ziffer enthält in der Text (mit Hilfe der Funktion).\n", zifferFunk);
+    printf("%d Buchstabe enthält in der Text (mit Hilfe der Funktion).\n", buchstabeFunk);
+    printf("%d Sonstige enthält in der Text (mit Hilfe der Funktion).\n", sonstigeFunk);
+    printf("-----------------------------------------------------------------------------\n");
+    printf("%d ist die Summe der ASCII-Codes aller Zeichen im Text.\n", querSumme);
+    printf("-----------------------------------------------------------------------------\n");
+    printf("%d ist die ASCII-Code des Zeichen str[%d] im Text.\n", result6, num);
+    printf("-----------------------------------------------------------------------------\n");
+    printf("converted text to small letter in main program:\n%s\n", strKlein);
+    printf("-----------------------------------------------------------------------------\n");
+    printf("converted text to small letter mit Funktion:\n%s\n", funkStrKlein);
+    printf("-----------------------------------------------------------------------------\n");
     return 0;
 }
