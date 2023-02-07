@@ -2,7 +2,6 @@
 
 int num1 = 2;
 int num2 = 4;
-
 void swapIntiger1(int n1, int n2)
 {
     num1 = n1;
@@ -26,7 +25,6 @@ void swapIntiger3(int **p1, int **p2)
 
 int main()
 {
-
     printf("num1 and num2:\n");
     scanf("%d %d", &num1, &num2);
     swapIntiger1(num1, num2);

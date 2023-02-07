@@ -43,6 +43,46 @@ int toChange(int letter)
 
     return letter + 32;
 }
+//-----------------------------------------------------------------------------------------------------------------------------
+int search(char string[], int index, int *anfangsIndex, int *endeIndex, int *leange)
+{
+    int chap = 0;
+    int rast = 0;
+    int starts = 0;
+    int endes = 0;
+    for (int k = index; string[k] != '\0'; k++)
+    {
+
+        if (string[k] > 64 && string[k] < 91 || string[k] > 96 && string[k] < 123 || string[k] > 47 && string[k] < 58)
+        {
+            rast++;
+        }
+        else
+        {
+            starts = k - 1;
+            break;
+        }
+    }
+    for (int p = index; string[p] != '\0'; p--)
+    {
+
+        if (string[p] > 64 && string[p] < 91 || string[p] > 96 && string[p] < 123 || string[p] > 47 && string[p] < 58)
+        {
+            chap++;
+        }
+        else
+        {
+            endes = p + 1;
+            *endeIndex = endes;
+            break;
+        }
+    }
+    //*leange = *ende - *anfang + 1;
+    // printf("start: %d\n", *anfangsIndex);
+    // printf("Ende: %d\n", *endeIndex);
+    //  printf("Laenge: %d\n", );
+    return 0;
+}
 //-----------------------------------------------------start main Programm-------------------------------------------------
 
 int main()
@@ -60,8 +100,12 @@ int main()
     char strKlein[2500] = "";
     int buffer;
     char funkStrKlein[2500] = "";
-
+    char userSearch[50] = "";
+    int *anfangsIndex;
+    int *endeIndex;
+    int *leange;
     //------------------------------------Wie viel Zeichnen,Buchstaben,Leerzeichen,Ziffer,Sonstige?--------------------------------------------------
+
     for (i = 0; str[i] != '\0'; i++)
     {
         zeichnen++;
@@ -125,13 +169,18 @@ int main()
         }
     }
     //-------------------------------------------------call funktions----------------------------------------------------------------------
-    printf("string: %s\n", str);
 
     int result1 = funkFoundLetter(str, 'e');
     int result2 = funkFoundLetter(str, 'z');
     int result3 = funkFoundLetter(str, 'A');
     int result4 = funkFoundLetter(str, 'M');
     int result6 = funkAsciiCode(str[num]);
+
+    //-----------------------------------------------------------------------------------------------------------------------------
+    // printf("enter a word:\n");
+    // scanf("%s", userSearch);
+    // printf("enter a word: %s\n", userSearch);
+    search(str, 12, anfangsIndex, endeIndex, leange);
 
     //--------------------------------------------------ausdrücken--------------------------------------------------------------
     printf("\n");
