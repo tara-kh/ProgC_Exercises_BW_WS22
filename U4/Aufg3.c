@@ -50,4 +50,4 @@ int main()
 
 4- while(1) baes mishavad ke ma yek loope binahayat dashte bashim va ba break an ra motevaghef konim.
 
-5- wiederholen == 0 barabar ast ba !wiederholen */
+5- wiederholen == 0 barabar ast ba !wiederholen .*/

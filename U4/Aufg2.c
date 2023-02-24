@@ -30,7 +30,7 @@ int main()
     swapIntiger1(num1, num2);
     printf("afterSwap1\n");
     printf("num1 = %d, num2 = %d\n", num1, num2);
-    printf("-----------------------------------------------------------------\n");
+    printf("----------------------------------------------------------------\n");
 
     swapIntiger2(&num1, &num2);
     printf("afterSwap2\n");
