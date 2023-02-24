@@ -1,8 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 
-void removeDuplicates(char *str)
+int main()
 {
+    char str[100];
+    printf("Enter a string: ");
+    scanf("%s", str); // Get the input string from the user
+
     int len = strlen(str); // Get the length of the input string
     int i, j, k;
 
@@ -21,16 +25,7 @@ void removeDuplicates(char *str)
             }
         }
     }
-}
 
-int main()
-{
-    char str[100];
-    printf("Enter a string: ");
-    scanf("%s", str); // Get the input string from the user
-
-    removeDuplicates(str); // Call the function to remove duplicates
-
-    printf("String after removing duplicates: %s", str); // Print the final string
+    printf("String after removing duplicates: %s\n", str); // Print the final string
     return 0;
 }
